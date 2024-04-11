@@ -160,6 +160,14 @@ class ThreadLib:
     def __getitem__(self, item) -> Thread:
         return self._threads[item]
 
+    @property
+    def lock(self):
+        return self._lock
+
+    @property
+    def local(self):
+        return self._local
+
     def keys(self):
         return self._threads.keys()
 
@@ -182,17 +190,6 @@ class ThreadLib:
         else:
             for i, v in self._threads.items():
                 v.start()
-
-    def acquire(self, blocking: bool = None, timeout: float = None):
-        kwargs = {}
-        if blocking is not None:
-            kwargs['blocking'] = blocking
-        if timeout is not None:
-            kwargs['timeout'] = timeout
-        self._lock.acquire(**kwargs)
-
-    def release(self):
-        self._lock.release()
 
     def _thread_name(self, name: str):
         if name:
