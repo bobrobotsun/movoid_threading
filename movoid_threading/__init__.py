@@ -6,4 +6,4 @@
 # Time          : 2024/4/3 1:49
 # Description   : 
 """
-from thread import Thread, ThreadLib, ThreadTerminateSignal, ThreadStopSignal, ThreadLoopStopSignal
+from .thread import Thread, ThreadLib, ThreadTerminateSignal, ThreadStopSignal, ThreadLoopStopSignal

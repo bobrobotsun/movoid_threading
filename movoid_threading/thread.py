@@ -11,40 +11,16 @@ import threading
 import time
 from typing import Union, Dict
 
-
-class ThreadFunction:
-    def __init__(self, func=None, args=None, kwargs=None):
-        self._func = None
-        self._args = None
-        self._kwargs = None
-        if isinstance(func, (list, tuple)):
-            self.init(*func)
-        elif isinstance(func, dict):
-            self.init(**func)
-        elif isinstance(func, ThreadFunction):
-            self.init(func._func, func._args, func._kwargs)
-        else:
-            self.init(func, args, kwargs)
-
-    def init(self, func=None, args=None, kwargs=None):
-        self._func = func
-        self._args = args if args else ()
-        self._kwargs = kwargs if kwargs else {}
-
-    def __call__(self):
-        if self._func:
-            return self._func(*self._args, **self._kwargs)
-        else:
-            return None
+from movoid_function import Function
 
 
 class Thread:
     def __init__(self, target, name: str, args: Union[list, tuple] = None, kwargs: dict = None, loop: int = 1, init=None, end=None, *, start: bool = True, daemon: bool = False, thread_dict: dict):
-        self._target = ThreadFunction(target, args, kwargs)
+        self._target = Function(target, args, kwargs)
         self._name: str = str(name)
         self._loop: int = int(loop)
-        self._init = ThreadFunction(init)
-        self._end = ThreadFunction(end)
+        self._init = Function(init)
+        self._end = Function(end)
         self._daemon: bool = bool(daemon)
         self._thread_dict: dict = thread_dict
 

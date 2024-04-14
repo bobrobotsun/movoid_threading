@@ -5,7 +5,7 @@ with open("README.md", "r", encoding='utf-8') as fh:
 
 setup(
     name='movoid_threading',
-    version='1.0.1',
+    version='1.0.2',
     packages=find_packages(),
     url='',
     license='',
@@ -14,5 +14,5 @@ setup(
     description='',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    install_requires=[],
+    install_requires=['movoid_function'],
 )
