@@ -1,1 +1,1 @@
-exclude test/*
+prune test
